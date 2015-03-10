@@ -27,9 +27,13 @@ public class TipCalculatorActivity extends Activity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Double a = Double.parseDouble(ed.getText().toString()) * 0.12;
-                txt.setText("Tip: $" + (box.isChecked() ?
-                        Integer.toString((int)Math.round(a)) : Double.toString(a)));
+                try {
+                    Double a = Double.parseDouble(ed.getText().toString()) * 0.12;
+                    txt.setText("Tip: $" + (box.isChecked() ?
+                            Integer.toString((int)Math.round(a)) : Double.toString(a)));
+                } catch (NumberFormatException e) {
+                    txt.setText("Tip:");
+                }
             }
         });
     }
